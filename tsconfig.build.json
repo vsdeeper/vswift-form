@@ -1,0 +1,25 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.lib.json",
+  "include": ["src/**/*", "src/**/*.vue", "types/env.d.ts", "types/auto-imports.d.ts", "types/components.d.ts"],
+  "exclude": ["src/**/__tests__/*", "src/App.vue", "src/main.ts", "src/test/**"],
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "preserve",
+    "jsxImportSource": "vue",
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "strict": true,
+    "verbatimModuleSyntax": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "declarationDir": "dist/types",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
