@@ -1,6 +1,6 @@
-# @vswift/components
+# vswift-form
 
-Quickly develop common components based on [Vue](https://cn.vuejs.org/) and [Element Plus](https://element-plus.org/).
+A simple but not simple form designer based on [Vue](https://cn.vuejs.org/) and [Element Plus](https://element-plus.org/).
 
 ## Develop
 
@@ -21,8 +21,3 @@ It will emit `dts` for components, then build output `.js` and `.cjs` file.
 ```sh
 pnpm release
 ```
-
-## Todo
-
-- `VsSearch` component
-- `VsTable` component
