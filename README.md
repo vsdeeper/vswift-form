@@ -1,6 +1,6 @@
 # vswift-form
 
-A simple but not simple form designer based on [Vue](https://cn.vuejs.org/) and [Element Plus](https://element-plus.org/).
+A simple but not simple form designer based on [Vue](https://cn.vuejs.org/) and [Element Plus](https://element-plus.org/). You can preview it [here](https://vsdeeper.github.io/vswift-form/).
 
 ## Develop
 
