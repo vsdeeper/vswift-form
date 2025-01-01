@@ -41,8 +41,9 @@ const genFormItemProp = (id: string, index: number) => {
         where="recursive-area"
         v-model="model[id][index]"
       />
+      <el-divider v-if="!widgetList?.length" class="nodata">暂无配置</el-divider>
     </el-card>
-    <el-divider v-if="!model[id]?.length">暂无数据</el-divider>
+    <el-divider v-if="!model[id]?.length" class="nodata">暂无数据</el-divider>
     <el-button type="primary" @click="onAdd">+ 新增</el-button>
   </div>
 </template>
@@ -64,15 +65,20 @@ const genFormItemProp = (id: string, index: number) => {
     .vs-form-item {
       margin-bottom: 18px;
     }
+    .vs-divider.nodata {
+      :deep(.vs-divider__text) {
+        color: var(--vs-text-color-secondary);
+      }
+    }
   }
   & > .vs-button {
     width: 100%;
     margin-top: 12px;
   }
-}
-.nodata {
-  font-size: 14px;
-  color: var(--vs-color-info);
-  padding: 6px;
+  & > .vs-divider.nodata {
+    :deep(.vs-divider__text) {
+      color: var(--vs-text-color-secondary);
+    }
+  }
 }
 </style>

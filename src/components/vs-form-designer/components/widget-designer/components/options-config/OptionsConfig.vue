@@ -99,9 +99,4 @@ function toValue(item: OptionsConfigItem) {
     align-items: center;
   }
 }
-.nodata {
-  font-size: 14px;
-  color: var(--vs-color-info);
-  padding: 6px;
-}
 </style>

@@ -56,7 +56,7 @@ const onDelete = (index: number) => {
       </el-table-column>
     </el-table>
     <el-button v-if="widgetList?.length" type="primary" @click="onAdd">+ 新增</el-button>
-    <el-divider v-if="!widgetList?.length">暂无配置</el-divider>
+    <el-divider v-if="!widgetList?.length" class="nodata">暂无配置</el-divider>
   </div>
 </template>
 
@@ -66,6 +66,11 @@ const onDelete = (index: number) => {
   & > .vs-button {
     width: 100%;
     margin-top: 12px;
+  }
+  & > .vs-divider.nodata {
+    :deep(.vs-divider__text) {
+      color: var(--vs-text-color-secondary);
+    }
   }
 }
 </style>
