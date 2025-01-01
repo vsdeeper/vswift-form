@@ -46,11 +46,6 @@ const genFormItemProp = (id: string) => {
     :rules="genFormItemRules(designData.options)"
     :prop="genFormItemProp(designData.id)"
   >
-    <!-- <component
-      :is="DComponent[pascal(designData.type)]"
-      :widget-list="designData.widgetList"
-      v-model="model![designData.id]"
-    /> -->
     <RecursiveAreaRender v-model="model" :design-data :form-item-prop />
   </el-form-item>
   <component

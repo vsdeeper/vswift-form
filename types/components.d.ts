@@ -76,6 +76,8 @@ declare module 'vue' {
     FormItem: typeof import('./../src/components/vs-form-designer/components/form-render/FormItem.vue')['default']
     FormPreview: typeof import('./../src/components/vs-form-designer/components/form-preview/FormPreview.vue')['default']
     FormRender: typeof import('./../src/components/vs-form-designer/components/form-render/FormRender.vue')['default']
+    IconForm: (typeof import('../src/components/vs-form-designer/components/icons/IconHorizontalFull.vue'))['default']
+    IconHorizontalFull: typeof import('./../src/components/vs-form-designer/components/icons/IconHorizontalFull.vue')['default']
     ImportJson: typeof import('./../src/components/vs-form-designer/components/import-json/ImportJson.vue')['default']
     InputDesigner: typeof import('./../src/components/vs-form-designer/components/widget-designer/components/input-designer/InputDesigner.vue')['default']
     InputNumberDesigner: typeof import('./../src/components/vs-form-designer/components/widget-designer/components/input-number-designer/InputNumberDesigner.vue')['default']

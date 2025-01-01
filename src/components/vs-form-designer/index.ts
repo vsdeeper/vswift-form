@@ -29,7 +29,13 @@ export type WidgetType =
   | 'upload'
 // 以下自定义组件
 
-export type FormDesign = Partial<Mutable<FormProps>> & { autoLayout?: boolean }
+export type FormPropsSettings = Partial<Mutable<FormProps>> & {
+  labelWidth?: number
+  autoLayout?: boolean
+  xl?: number
+  lg?: number
+  md?: number
+}
 export interface WidgetDesignData<Options = Record<string, any>> {
   id: string
   type: WidgetType
@@ -38,7 +44,7 @@ export interface WidgetDesignData<Options = Record<string, any>> {
   [key: string]: any
 }
 export interface FormDesignData {
-  form: FormDesign
+  form: FormPropsSettings
   widgetList: WidgetDesignData[]
 }
 export type VsFormDesignerInstance = InstanceType<typeof VsFormDesigner>
