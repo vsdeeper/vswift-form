@@ -1,7 +1,11 @@
 {
   "extends": "@vue/tsconfig/tsconfig.lib.json",
-  "include": ["src/**/*", "src/**/*.vue", "types/env.d.ts", "types/auto-imports.d.ts", "types/components.d.ts"],
-  "exclude": ["src/**/__tests__/*", "src/App.vue", "src/main.ts", "src/test/**"],
+  "include": [
+    "src/components/index.ts",
+    "types/env.d.ts",
+    "types/auto-imports.d.ts",
+    "types/components.d.ts"
+  ],
   "compilerOptions": {
     "module": "ESNext",
     "moduleResolution": "bundler",
@@ -19,7 +23,9 @@
     "declarationDir": "dist/types",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ]
     }
   }
 }

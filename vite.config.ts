@@ -9,18 +9,6 @@ import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 import Inspect from 'vite-plugin-inspect'
 import { globSync } from 'glob'
 
-const genEntry = () => {
-  try {
-    const matchFiles = globSync('src/components/vs-*/index.ts')
-    const entryArr = matchFiles.map(filePath => ({
-      [filePath.split('/index.ts')[0].split('src/components/')[1]]: filePath,
-    }))
-    return Object.assign({ index: 'src/components/index.ts' }, ...entryArr)
-  } catch (error) {
-    console.error(error)
-  }
-}
-
 // https://vitejs.dev/config/
 export default defineConfig(() => {
   const { IS_BUILD_LIB } = process.env
@@ -79,11 +67,21 @@ export default defineConfig(() => {
             emptyOutDir: false,
             copyPublicDir: false,
             lib: {
-              entry: genEntry(),
-              fileName: '[name]',
+              entry: 'src/components/index.ts',
+              name: 'VswiftForm',
+              fileName: 'index',
             },
             rollupOptions: {
               external: ['vue', '@element-plus/icons-vue', 'element-plus', 'radash', 'nanoid'],
+              output: {
+                globals: {
+                  vue: 'Vue',
+                  'element-plus': 'ElementPlus',
+                  '@element-plus/icons-vue': 'IconsVue',
+                  radash: 'Radash',
+                  nanoid: 'Nanoid',
+                },
+              },
             },
           }
         : undefined,
