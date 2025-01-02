@@ -14,3 +14,11 @@ const options = computed<DTextOptions>(() => props.designData.options)
     {{ options.text }}
   </el-text>
 </template>
+
+<style lang="scss" scoped>
+.vs-text {
+  display: block;
+  width: 100%;
+  padding: 12px 0;
+}
+</style>
