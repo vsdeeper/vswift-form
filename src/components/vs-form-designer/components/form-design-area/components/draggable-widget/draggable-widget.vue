@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import draggable from 'vuedraggable'
-import type { FormDesignData, WidgetDesignData, WidgetType } from '@/components/vs-form-designer'
+import type { WidgetDesignData, WidgetType } from '@/components/vs-form-designer'
 import { DComponent } from './components'
 import { pascal } from 'radash'
-import { useFormDesignerStore } from '@/stores'
+import { setActiveWidgetDesignData } from '@/stores'
 import { OPERATE_OPTIONS } from './constants'
 import { genWidgetId } from '@/components/vs-form-designer/util'
 import { ElMessage } from 'element-plus'
@@ -16,7 +16,6 @@ const props = defineProps<{
 const widgetList = defineModel<WidgetDesignData[]>('widgetList', { default: () => [] })
 const formData = defineModel<any>('formData')
 const canDrag = ref(false)
-const { setActiveWidgetDesignData } = useFormDesignerStore()
 
 function onDragChange(...args: any[]) {
   console.log('onDragChange', args, widgetList.value)

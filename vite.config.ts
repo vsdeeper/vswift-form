@@ -5,6 +5,8 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import ElementPlus from 'unplugin-element-plus/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+import Icons from 'unplugin-icons/vite'
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js'
 import Inspect from 'vite-plugin-inspect'
 import { globSync } from 'glob'
@@ -30,6 +32,11 @@ export default defineConfig(() => {
           ElementPlusResolver({
             importStyle: 'sass',
           }),
+          // Auto import icon components
+          // 自动导入图标组件
+          IconsResolver({
+            prefix: 'Icon',
+          }),
         ],
       }),
       Components({
@@ -39,10 +46,18 @@ export default defineConfig(() => {
           ElementPlusResolver({
             importStyle: 'sass',
           }),
+          // Auto register icon components
+          // 自动注册图标组件
+          IconsResolver({
+            enabledCollections: ['ep'],
+          }),
         ],
       }),
       ElementPlus({
         ignoreComponents: ['AutoResizer'], // 解决 Table-v2 AutoResizer with manual import: failed to resolve css file
+      }),
+      Icons({
+        autoInstall: true,
       }),
       Inspect(),
     ],
@@ -66,6 +81,8 @@ export default defineConfig(() => {
         ? {
             emptyOutDir: false,
             copyPublicDir: false,
+            sourcemap: true,
+            commonjsOptions: { esmExternals: true },
             lib: {
               entry: 'src/components/index.ts',
               name: 'VswiftForm',

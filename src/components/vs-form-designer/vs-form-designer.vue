@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useFormDesignerStore } from '@/stores'
+import zhCn from 'element-plus/es/locale/lang/zh-cn'
+import { activeWidgetDesignData, formDesignData } from '@/stores'
 import { Delete, View } from '@element-plus/icons-vue'
-import { storeToRefs } from 'pinia'
 import type { ImportJsonInstance, ExportJsonInstance, FormPreviewInstance } from './components'
 
 defineProps<{
@@ -11,7 +11,6 @@ defineProps<{
 const FormPreviewRef = ref<FormPreviewInstance>()
 const ImportJsonRef = ref<ImportJsonInstance>()
 const ExportJsonRef = ref<ExportJsonInstance>()
-const { activeWidgetDesignData, formDesignData } = storeToRefs(useFormDesignerStore())
 
 const onClear = () => {
   formDesignData.value.widgetList = []
@@ -31,53 +30,55 @@ const onExportJson = () => {
 </script>
 
 <template>
-  <el-container class="vs-form-designer" :style="{ height: height ?? '650px' }">
-    <el-aside class="left-side" width="320px">
-      <el-tabs model-value="widget">
-        <el-tab-pane label="组件" name="widget">
-          <el-scrollbar>
-            <WidgetOptions />
-          </el-scrollbar>
-        </el-tab-pane>
-        <!-- <el-tab-pane label="表单模板" name="form-template">
+  <el-config-provider :locale="zhCn" namespace="vs">
+    <el-container class="vs-form-designer" :style="{ height: height ?? '650px' }">
+      <el-aside class="left-side" width="320px">
+        <el-tabs model-value="widget">
+          <el-tab-pane label="组件" name="widget">
+            <el-scrollbar>
+              <WidgetOptions />
+            </el-scrollbar>
+          </el-tab-pane>
+          <!-- <el-tab-pane label="表单模板" name="form-template">
           <el-scrollbar> 表单模板 </el-scrollbar>
         </el-tab-pane> -->
-      </el-tabs>
-    </el-aside>
-    <el-main>
-      <div class="function-bar">
-        <el-button type="primary" text :icon="View" @click="onPreview">预览</el-button>
-        <el-button type="primary" text @click="onImportJson">导入JSON</el-button>
-        <el-button type="primary" text @click="onExportJson">导出JSON</el-button>
-        <el-popconfirm title="确认清空吗？" @confirm="onClear">
-          <template #reference>
-            <el-button type="danger" text :icon="Delete">清空</el-button>
-          </template>
-        </el-popconfirm>
-      </div>
-      <el-scrollbar>
-        <FormDesignArea />
-      </el-scrollbar>
-    </el-main>
-    <el-aside class="right-side" width="320px">
-      <el-tabs model-value="widget-settings">
-        <el-tab-pane label="组件设置" name="widget-settings">
-          <el-scrollbar>
-            <WidgetDesigner v-model="activeWidgetDesignData" />
-          </el-scrollbar>
-        </el-tab-pane>
-        <el-tab-pane label="表单设置" name="form-settings">
-          <el-scrollbar>
-            <FormDesigner v-model="formDesignData.form" />
-          </el-scrollbar>
-        </el-tab-pane>
-      </el-tabs>
-    </el-aside>
+        </el-tabs>
+      </el-aside>
+      <el-main>
+        <div class="function-bar">
+          <el-button type="primary" text :icon="View" @click="onPreview">预览</el-button>
+          <el-button type="primary" text @click="onImportJson">导入JSON</el-button>
+          <el-button type="primary" text @click="onExportJson">导出JSON</el-button>
+          <el-popconfirm title="确认清空吗？" @confirm="onClear">
+            <template #reference>
+              <el-button type="danger" text :icon="Delete">清空</el-button>
+            </template>
+          </el-popconfirm>
+        </div>
+        <el-scrollbar>
+          <FormDesignArea />
+        </el-scrollbar>
+      </el-main>
+      <el-aside class="right-side" width="320px">
+        <el-tabs model-value="widget-settings">
+          <el-tab-pane label="组件设置" name="widget-settings">
+            <el-scrollbar>
+              <WidgetDesigner v-model="activeWidgetDesignData" />
+            </el-scrollbar>
+          </el-tab-pane>
+          <el-tab-pane label="表单设置" name="form-settings">
+            <el-scrollbar>
+              <FormDesigner v-model="formDesignData.form" />
+            </el-scrollbar>
+          </el-tab-pane>
+        </el-tabs>
+      </el-aside>
 
-    <FormPreview ref="FormPreviewRef" />
-    <ImportJson ref="ImportJsonRef" />
-    <ExportJson ref="ExportJsonRef" />
-  </el-container>
+      <FormPreview ref="FormPreviewRef" />
+      <ImportJson ref="ImportJsonRef" />
+      <ExportJson ref="ExportJsonRef" />
+    </el-container>
+  </el-config-provider>
 </template>
 
 <style lang="scss" scoped>

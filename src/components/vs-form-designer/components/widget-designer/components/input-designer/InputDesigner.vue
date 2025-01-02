@@ -3,13 +3,12 @@ import { QuestionFilled } from '@element-plus/icons-vue'
 import type { DInputOptions } from '../../../form-design-area'
 import { INPUT_TYPE_OPTIONS, PATTERN_OPTIONS } from '../constants'
 import type { WidgetDesignData } from '@/components/vs-form-designer'
-import { useFormDesignerStore } from '@/stores'
+import { formDesignData } from '@/stores'
 
 const model = defineModel<WidgetDesignData<DInputOptions>>({ default: () => ({}) })
 
 const showColumnWidth = (id: string) => {
-  const { formDesignData } = useFormDesignerStore()
-  const filterTable = formDesignData.widgetList.filter(e => e.type === 'data-table')
+  const filterTable = formDesignData.value.widgetList.filter(e => e.type === 'data-table')
   return filterTable.some(e => e.widgetList?.some(a => a.id === id))
 }
 </script>

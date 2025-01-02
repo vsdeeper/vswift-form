@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { useFormDesignerStore } from '@/stores'
+import { activeWidgetDesignData } from '@/stores'
 import { DesignerComponent } from '.'
 import { pascal } from 'radash'
 import type { WidgetDesignData } from '../..'
 
 const model = defineModel<WidgetDesignData>()
-const type = computed(() => useFormDesignerStore().activeWidgetDesignData?.type ?? 'unknown')
+const type = computed(() => activeWidgetDesignData.value?.type ?? 'unknown')
 </script>
 
 <template>

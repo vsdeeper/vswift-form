@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { useFormDesignerStore } from '@/stores'
-import { storeToRefs } from 'pinia'
+import { formDesignData } from '@/stores'
 import { ElMessage } from 'element-plus'
 import { aceConfigInit } from '../../ace-config'
 
@@ -11,7 +10,6 @@ const AceEditor = defineAsyncComponent({
 const show = ref(false)
 const editorRef = ref()
 const json = ref('')
-const { formDesignData } = storeToRefs(useFormDesignerStore())
 
 const onConfirm = () => {
   const editor = editorRef.value._editor

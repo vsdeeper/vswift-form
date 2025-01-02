@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { useFormDesignerStore } from '@/stores'
+import { formDesignData } from '@/stores'
 
 const model = ref<Record<string, any>>({})
-const formDesignData = computed(() => useFormDesignerStore().formDesignData)
 </script>
 
 <template>
