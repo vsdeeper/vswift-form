@@ -19,9 +19,9 @@
     "component",
     "vue",
     "element-plus",
-    "radash",
-    "LICENSE"
+    "radash"
   ],
+  "license": "MIT",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
