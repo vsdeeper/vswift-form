@@ -3,5 +3,5 @@ import { VsFormDesigner } from '@/components'
 </script>
 
 <template>
-  <VsFormDesigner height="calc(100vh - 20px)"> </VsFormDesigner>
+  <VsFormDesigner height="calc(100vh - 20px)" />
 </template>

@@ -3,6 +3,7 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn'
 import { activeWidgetDesignData, formDesignData } from '@/stores'
 import { Delete, View } from '@element-plus/icons-vue'
 import type { ImportJsonInstance, ExportJsonInstance, FormPreviewInstance } from './components'
+import type { FormDesignData } from '.'
 
 defineProps<{
   height?: string
@@ -27,6 +28,20 @@ const onImportJson = () => {
 const onExportJson = () => {
   ExportJsonRef.value?.open(JSON.stringify(formDesignData.value, null, 2))
 }
+
+const getFormDesignData = (): FormDesignData =>
+  JSON.parse(
+    JSON.stringify(formDesignData.value, (key: string, val: any) => {
+      if (key === '__selected' && typeof val === 'boolean') {
+        return undefined
+      }
+      return val
+    }),
+  )
+
+defineExpose({
+  getFormDesignData,
+})
 </script>
 
 <template>

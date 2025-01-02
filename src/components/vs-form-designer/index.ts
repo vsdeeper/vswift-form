@@ -30,6 +30,8 @@ export type WidgetType =
 // 以下自定义组件
 
 export type FormPropsSettings = Partial<Mutable<FormProps>> & {
+  id: string
+  name?: string
   labelWidth?: number
   autoLayout?: boolean
   xl?: number
