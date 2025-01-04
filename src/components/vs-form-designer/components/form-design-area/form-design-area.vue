@@ -1,18 +1,23 @@
 <script setup lang="ts">
-import { formDesignData } from '@/stores'
+import type { FormPropsSettings, WidgetDesignData } from '../..'
 
-const model = ref<Record<string, any>>({})
+defineProps<{
+  formProps: FormPropsSettings
+}>()
+
+const model = defineModel<WidgetDesignData[]>({ default: () => [] })
+const formData = ref<Record<string, any>>({})
 </script>
 
 <template>
   <el-form
     class="form-design-area"
-    v-bind="formDesignData.form"
-    :model
+    v-bind="formProps"
+    :model="formData"
     label-position="top"
     @submit.prevent
   >
-    <DraggableWidget v-model:widget-list="formDesignData.widgetList" v-model:form-data="model" />
+    <DraggableWidget v-model:widget-list="model" v-model:form-data="formData" />
   </el-form>
 </template>
 

@@ -1,51 +1,65 @@
 <script setup lang="ts">
 import zhCn from 'element-plus/es/locale/lang/zh-cn'
-import { activeWidgetDesignData, formDesignData } from '@/stores'
+import {
+  activeWidgetDesignData,
+  initFormDesignData,
+  setActiveWidgetDesignData,
+  setFormDesignData,
+} from '@/stores'
 import { Delete, View } from '@element-plus/icons-vue'
 import type { ImportJsonInstance, ExportJsonInstance, FormPreviewInstance } from './components'
-import type { FormDesignData } from '.'
+import { deleteExtraFieldsReplacer, type FormDesignData } from '.'
 
 defineProps<{
   height?: string
 }>()
 
+const model = ref<FormDesignData>(initFormDesignData())
 const FormPreviewRef = ref<FormPreviewInstance>()
 const ImportJsonRef = ref<ImportJsonInstance>()
 const ExportJsonRef = ref<ExportJsonInstance>()
 
+watch(
+  model,
+  val => {
+    setFormDesignData(val)
+  },
+  { immediate: true },
+)
+
 const onClear = () => {
-  formDesignData.value.widgetList = []
+  model.value.widgetList = []
 }
 
 const onPreview = () => {
-  FormPreviewRef.value?.open(formDesignData.value)
+  FormPreviewRef.value?.open(model.value)
 }
 
 const onImportJson = () => {
-  ImportJsonRef.value?.open(JSON.stringify(formDesignData.value, null, 2))
+  ImportJsonRef.value?.open(JSON.stringify(model.value, deleteExtraFieldsReplacer, 2))
+}
+
+const onImportSuccess = (val: FormDesignData) => {
+  model.value = val
+  setActiveWidgetDesignData(undefined)
 }
 
 const onExportJson = () => {
-  ExportJsonRef.value?.open(JSON.stringify(formDesignData.value, null, 2))
+  ExportJsonRef.value?.open(JSON.stringify(model.value, deleteExtraFieldsReplacer, 2))
 }
 
-const getFormDesignData = (): FormDesignData =>
-  JSON.parse(
-    JSON.stringify(formDesignData.value, (key: string, val: any) => {
-      if (key === '__selected' && typeof val === 'boolean') {
-        return undefined
-      }
-      return val
-    }),
-  )
+const getModel = (): FormDesignData => {
+  return JSON.parse(JSON.stringify(model.value, deleteExtraFieldsReplacer))
+}
 
-const setFormDesignData = (data: FormDesignData) => {
-  formDesignData.value = data
+const setModel = (data?: FormDesignData) => {
+  model.value = data ?? initFormDesignData()
+  setActiveWidgetDesignData(undefined)
 }
 
 defineExpose({
-  getFormDesignData,
-  setFormDesignData,
+  getModel,
+  setModel,
 })
 </script>
 
@@ -76,7 +90,7 @@ defineExpose({
           </el-popconfirm>
         </div>
         <el-scrollbar>
-          <FormDesignArea />
+          <FormDesignArea v-model="model.widgetList" :form-props="model.form" />
         </el-scrollbar>
       </el-main>
       <el-aside class="right-side" width="320px">
@@ -88,14 +102,14 @@ defineExpose({
           </el-tab-pane>
           <el-tab-pane label="表单设置" name="form-settings">
             <el-scrollbar>
-              <FormDesigner v-model="formDesignData.form" />
+              <FormDesigner v-model="model.form" />
             </el-scrollbar>
           </el-tab-pane>
         </el-tabs>
       </el-aside>
 
       <FormPreview ref="FormPreviewRef" />
-      <ImportJson ref="ImportJsonRef" />
+      <ImportJson ref="ImportJsonRef" @success="onImportSuccess" />
       <ExportJson ref="ExportJsonRef" />
     </el-container>
   </el-config-provider>

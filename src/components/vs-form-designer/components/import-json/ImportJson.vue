@@ -1,7 +1,11 @@
 <script setup lang="ts">
-import { formDesignData } from '@/stores'
 import { ElMessage } from 'element-plus'
 import { aceConfigInit } from '../../ace-config'
+import type { FormDesignData } from '../..'
+
+const emit = defineEmits<{
+  (event: 'success', val: FormDesignData): void
+}>()
 
 const AceEditor = defineAsyncComponent({
   loader: async () => (await import('vue3-ace-editor')).VAceEditor,
@@ -18,9 +22,9 @@ const onConfirm = () => {
     ElMessage.error('json数据格式错误')
     return
   }
-  formDesignData.value = JSON.parse(json.value)
   show.value = false
   ElMessage.success('导入成功')
+  emit('success', JSON.parse(json.value))
 }
 
 const open = (data: string) => {

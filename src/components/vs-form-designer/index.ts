@@ -3,6 +3,7 @@ import 'element-plus/theme-chalk/src/message.scss'
 import VsFormDesigner from './vs-form-designer.vue'
 import type { Mutable } from './components'
 
+export { deleteExtraFieldsReplacer } from './util'
 export type WidgetType =
   // 以下组件分类
   | 'basic'

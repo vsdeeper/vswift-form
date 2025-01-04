@@ -18,7 +18,7 @@ const formData = defineModel<any>('formData')
 const canDrag = ref(false)
 
 function onDragChange(...args: any[]) {
-  console.log('onDragChange', args, widgetList.value)
+  // console.log('onDragChange', args, widgetList.value)
   const { added }: { added: { element: WidgetDesignData } } = args[0]
   if (added) {
     // 新增操作

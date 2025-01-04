@@ -3,13 +3,14 @@ import { QuestionFilled } from '@element-plus/icons-vue'
 import type { DDatetimePickerOptions } from '../../../form-design-area'
 import { DATETIME_PICKER_TYPE_OPTIONS } from '../constants'
 import type { WidgetDesignData } from '@/components/vs-form-designer'
-import { formDesignData } from '@/stores'
+import { getFormDesignData } from '@/stores'
 
 const model = defineModel<WidgetDesignData<DDatetimePickerOptions>>({ default: () => ({}) })
 
 const showColumnWidth = (id: string) => {
-  const filterTable = formDesignData.value.widgetList.filter(e => e.type === 'data-table')
-  return filterTable.some(e => e.widgetList?.some(a => a.id === id))
+  const formDesignData = getFormDesignData()
+  const filterTable = formDesignData?.widgetList.filter(e => e.type === 'data-table')
+  return filterTable?.some(e => e.widgetList?.some(a => a.id === id))
 }
 
 const onChange = (key: string, val: any) => {
