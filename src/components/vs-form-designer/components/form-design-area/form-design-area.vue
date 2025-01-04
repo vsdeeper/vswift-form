@@ -5,7 +5,6 @@ const model = ref<Record<string, any>>({})
 </script>
 
 <template>
-  <!-- {{ formDesignData }} -->
   <el-form
     class="form-design-area"
     v-bind="formDesignData.form"

@@ -39,8 +39,13 @@ const getFormDesignData = (): FormDesignData =>
     }),
   )
 
+const setFormDesignData = (data: FormDesignData) => {
+  formDesignData.value = data
+}
+
 defineExpose({
   getFormDesignData,
+  setFormDesignData,
 })
 </script>
 
