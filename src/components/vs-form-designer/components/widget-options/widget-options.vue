@@ -73,13 +73,13 @@ function genWidgetDataOptions(widget: WidgetOptionItem) {
       return {
         label: widget.label,
         required: true,
-        optionData: [],
+        options: [],
       } as DRadioOptions
     case 'checkbox':
       return {
         label: widget.label,
         required: true,
-        optionData: [],
+        options: [],
       } as DCheckboxOptions
     case 'select':
       return {
@@ -89,7 +89,7 @@ function genWidgetDataOptions(widget: WidgetOptionItem) {
         multiple: false,
         clearable: true,
         dataSource: 'customize',
-        optionData: [],
+        options: [],
         map: {},
       } as DSelectOptions
     case 'cascader':
@@ -99,9 +99,8 @@ function genWidgetDataOptions(widget: WidgetOptionItem) {
         placeholder: '请选择',
         multiple: false,
         clearable: true,
-        dataSource: 'customize',
-        optionData: [],
-        map: { label: 'label', value: 'value' },
+        options: [],
+        map: { label: 'label', value: 'id' },
       } as DCascaderOptions
     case 'date-picker':
       return {

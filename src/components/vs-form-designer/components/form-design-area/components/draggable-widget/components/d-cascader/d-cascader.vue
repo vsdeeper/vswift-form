@@ -13,6 +13,24 @@ const emit = defineEmits<{
 
 const model = defineModel<string>()
 const options = computed<DCascaderOptions>(() => props.designData.options)
+const optionData = ref<Record<string, any>[]>([])
+const labelKey = computed(() => options.value.map?.label ?? 'label')
+const valueKey = computed(() => options.value.map?.value ?? 'value')
+const childrenKey = computed(() => options.value.map?.children ?? 'children')
+
+watch(
+  () => options.value.systemApi,
+  async val => {
+    if (!val) return
+    const res = await fetch(`${options.value.systemApi}`, {
+      method: 'get',
+    })
+    const data = await res.json()
+    if (Array.isArray(data)) optionData.value = data as Record<string, any>[]
+    else optionData.value = (data.list ?? []) as Record<string, any>[]
+  },
+  { immediate: true },
+)
 
 function onChange(val?: CascaderValue) {
   emit('change', val)
@@ -21,10 +39,14 @@ function onChange(val?: CascaderValue) {
 
 <template>
   <el-cascader
-    v-bind="options"
+    v-bind="{
+      clearable: true,
+      filterable: true,
+      options: optionData,
+      props: { label: labelKey, value: valueKey, children: childrenKey },
+      ...options,
+    }"
     v-model="model"
-    :clearable="options.clearable ?? true"
-    :filterable="options.filterable ?? true"
     @change="onChange"
   />
 </template>

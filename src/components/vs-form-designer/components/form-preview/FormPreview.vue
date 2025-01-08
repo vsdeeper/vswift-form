@@ -33,7 +33,7 @@ defineExpose({
 </script>
 
 <template>
-  <el-drawer v-model="show" :size>
+  <el-drawer v-model="show" :size destroy-on-close>
     <template #title>
       <div class="vs-drawer__title">
         预览

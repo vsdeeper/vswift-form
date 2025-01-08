@@ -5,7 +5,7 @@ import type { OptionsConfigItem } from '@/components/vs-form-designer/components
 export type DSelectInstance = InstanceType<typeof DSelect>
 export type DSelectOptions = Partial<ISelectProps> & {
   label?: string
-  optionData?: OptionsConfigItem[]
+  options?: OptionsConfigItem[]
   defaultValue?: any
   required?: boolean
   dataSource?: 'customize' | 'systemApi'

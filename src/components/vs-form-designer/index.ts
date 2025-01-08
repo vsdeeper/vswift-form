@@ -1,5 +1,6 @@
 import type { FormProps } from 'element-plus'
 import 'element-plus/theme-chalk/src/message.scss'
+import '@/styles/main.scss'
 import VsFormDesigner from './vs-form-designer.vue'
 import type { Mutable } from './components'
 

@@ -2,7 +2,6 @@
 import { QuestionFilled } from '@element-plus/icons-vue'
 import type { DSelectOptions } from '../../../form-design-area'
 import type { WidgetDesignData } from '@/components/vs-form-designer'
-import { SYSTEM_API_OPTIONS } from '../constants'
 
 const model = defineModel<WidgetDesignData<DSelectOptions>>({ default: () => ({}) })
 const defaultValue = ref()
@@ -10,14 +9,14 @@ const defaultValue = ref()
 watch(
   [
     defaultValue,
-    () => model.value.options.optionData,
+    () => model.value.options.options,
     () => model.value.options.multiple,
     () => model.value.options.dataSource,
   ],
   res => {
-    const [defVal, optionData, multiple, dataSource] = res
+    const [defVal, options, multiple, dataSource] = res
     if (dataSource === 'customize') {
-      const defValArr = optionData?.map(e => (e.valueType === 'number' ? Number(e.value) : e.value))
+      const defValArr = options?.map(e => (e.valueType === 'number' ? Number(e.value) : e.value))
       if (multiple) {
         const _defVal = defVal?.filter(e => defValArr?.includes(e))
         if (_defVal?.length) {
@@ -46,9 +45,9 @@ const onChange = (key: string, val: any) => {
     case 'dataSource':
       defaultValue.value = undefined
       model.value.options.defaultValue = undefined
-      model.value.options.optionData = []
+      model.value.options.options = []
       if (val === 'systemApi') {
-        model.value.options.map = { label: 'label', value: 'value' }
+        model.value.options.map = { label: 'label', value: 'id' }
       } else if (val === 'customize') {
         model.value.options.map = {}
       }
@@ -100,7 +99,7 @@ const onChange = (key: string, val: any) => {
     </el-form-item>
     <el-form-item
       v-if="model.options.dataSource === 'customize'"
-      prop="options.optionData"
+      prop="options.options"
       label-position="top"
       class="option-data"
     >
@@ -109,14 +108,14 @@ const onChange = (key: string, val: any) => {
       </template>
       <el-radio-group v-if="!model.options.multiple" v-model="defaultValue">
         <OptionsConfig
-          v-model="model.options.optionData"
+          v-model="model.options.options"
           type="select"
           :multiple="model.options.multiple"
         />
       </el-radio-group>
       <el-checkbox-group v-if="!!model.options.multiple" v-model="defaultValue">
         <OptionsConfig
-          v-model="model.options.optionData"
+          v-model="model.options.options"
           type="select"
           :multiple="model.options.multiple"
         />
@@ -127,14 +126,7 @@ const onChange = (key: string, val: any) => {
       label="数据接口"
       prop="options.systemApi"
     >
-      <el-select v-model="model.options.systemApi" placeholder="请选择" clearable filterable>
-        <el-option
-          v-for="item in SYSTEM_API_OPTIONS"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
+      <el-input v-model="model.options.systemApi" placeholder="示例：/v1/api/getList" clearable />
     </el-form-item>
     <el-form-item
       v-if="model.options.dataSource === 'systemApi'"

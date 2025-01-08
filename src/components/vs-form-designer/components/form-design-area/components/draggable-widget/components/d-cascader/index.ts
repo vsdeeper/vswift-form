@@ -8,6 +8,6 @@ export type DCascaderOptions = Partial<ExtractPropTypes<typeof cascaderProps>> &
   required?: boolean
   multiple?: boolean
   systemApi?: string
-  map?: { label?: string; value?: string }
+  map?: { label?: string; value?: string; children?: string }
 }
 export { DCascader }

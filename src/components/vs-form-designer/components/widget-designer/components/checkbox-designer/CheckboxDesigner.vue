@@ -7,10 +7,10 @@ const model = defineModel<WidgetDesignData<DRadioOptions>>({ default: () => ({})
 const defaultValue = ref()
 
 watch(
-  [defaultValue, () => model.value.options.optionData],
+  [defaultValue, () => model.value.options.options],
   res => {
-    const [defVal, optionData] = res
-    const defValArr = optionData?.map(e => (e.valueType === 'number' ? Number(e.value) : e.value))
+    const [defVal, options] = res
+    const defValArr = options?.map(e => (e.valueType === 'number' ? Number(e.value) : e.value))
     const _defVal = defVal?.filter(e => defValArr?.includes(e))
     if (_defVal?.length) {
       model.value.options.defaultValue = _defVal
@@ -46,12 +46,12 @@ watch(
     <el-form-item label="必填" prop="options.required">
       <el-switch v-model="model.options.required" :active-value="true" :inactive-value="false" />
     </el-form-item>
-    <el-form-item prop="options.optionData" label-position="top" class="option-data">
+    <el-form-item prop="options.options" label-position="top" class="option-data">
       <template #label>
         <el-divider direction="horizontal">选项配置</el-divider>
       </template>
       <el-checkbox-group v-model="defaultValue">
-        <OptionsConfig v-model="model.options.optionData" type="checkbox" />
+        <OptionsConfig v-model="model.options.options" type="checkbox" />
       </el-checkbox-group>
     </el-form-item>
   </el-form>

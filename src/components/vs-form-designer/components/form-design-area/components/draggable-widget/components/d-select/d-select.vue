@@ -13,6 +13,7 @@ const emit = defineEmits<{
 
 const model = defineModel<string>()
 const options = computed<DSelectOptions>(() => props.designData.options)
+const optionData = ref<Record<string, any>[]>([])
 const labelKey = computed(() => options.value.map?.label ?? 'label')
 const valueKey = computed(() => options.value.map?.value ?? 'value')
 const slots = useSlots()
@@ -21,6 +22,22 @@ watch(
   () => options.value.defaultValue,
   val => {
     model.value = val
+  },
+  { immediate: true },
+)
+
+watch(
+  () => options.value.dataSource,
+  async val => {
+    if (val === 'systemApi') {
+      if (!options.value.systemApi) return
+      const res = await fetch(`${options.value.systemApi}`, {
+        method: 'get',
+      })
+      const data = await res.json()
+      if (Array.isArray(data)) optionData.value = data as Record<string, any>[]
+      else optionData.value = (data.list ?? []) as Record<string, any>[]
+    } else optionData.value = options.value.options ?? []
   },
   { immediate: true },
 )
@@ -43,7 +60,7 @@ function toValue(item: OptionsConfigItem) {
     @change="onChange"
   >
     <el-option
-      v-for="item in options.optionData"
+      v-for="item in optionData"
       :key="item[valueKey]"
       :label="item[labelKey]"
       :value="toValue(item)"

@@ -71,5 +71,3 @@ export const PATTERN_OPTIONS = [
 ]
 
 export const CONTROLS_POSITION_OPTIONS = [{ label: 'right', value: 'right' }]
-
-export const SYSTEM_API_OPTIONS = [{ label: '示例接口', value: '/api/list' }]

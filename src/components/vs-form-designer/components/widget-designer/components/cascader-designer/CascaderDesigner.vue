@@ -2,7 +2,6 @@
 import { QuestionFilled } from '@element-plus/icons-vue'
 import type { DCascaderOptions } from '../../../form-design-area'
 import type { WidgetDesignData } from '@/components/vs-form-designer'
-import { SYSTEM_API_OPTIONS } from '../constants'
 
 const model = defineModel<WidgetDesignData<DCascaderOptions>>({ default: () => ({}) })
 </script>
@@ -38,14 +37,7 @@ const model = defineModel<WidgetDesignData<DCascaderOptions>>({ default: () => (
       <el-switch v-model="model.options.required" :active-value="true" :inactive-value="false" />
     </el-form-item>
     <el-form-item label="数据接口" prop="options.systemApi">
-      <el-select v-model="model.options.systemApi" placeholder="请选择" clearable filterable>
-        <el-option
-          v-for="item in SYSTEM_API_OPTIONS"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
-        />
-      </el-select>
+      <el-input v-model="model.options.systemApi" placeholder="示例：/v1/api/getList" clearable />
     </el-form-item>
     <el-form-item label="选项名称key" prop="options.map.label">
       <el-input v-model.trim="model.options.map!.label" placeholder="请输入" />

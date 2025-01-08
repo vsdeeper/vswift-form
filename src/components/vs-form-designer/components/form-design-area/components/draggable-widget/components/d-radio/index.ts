@@ -8,7 +8,7 @@ export type DRadioOptions = Partial<RadioGroupProps> & {
   radioType?: 'button'
   defaultValue?: any
   required?: boolean
-  optionData?: OptionsConfigItem[]
+  options?: OptionsConfigItem[]
   map?: { label?: string; value?: string }
 }
 export { DRadio }
