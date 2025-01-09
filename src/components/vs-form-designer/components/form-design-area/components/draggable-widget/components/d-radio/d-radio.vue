@@ -41,23 +41,13 @@ function toValue(item: OptionsConfigItem) {
     @change="onChange"
   >
     <template v-if="options.radioType === 'button'">
-      <el-radio-button
-        v-for="item in options.options"
-        :key="item[valueKey]"
-        :label="item[labelKey]"
-        :value="toValue(item)"
-      >
-        <template #default>{{ item[labelKey] }}</template>
+      <el-radio-button v-for="item in options.options" :key="item[valueKey]" :value="toValue(item)">
+        {{ item[labelKey] }}
       </el-radio-button>
     </template>
     <template v-else>
-      <el-radio
-        v-for="item in options.options"
-        :key="item[valueKey]"
-        :label="item[labelKey]"
-        :value="toValue(item)"
-      >
-        <template #default>{{ item[labelKey] }}</template>
+      <el-radio v-for="item in options.options" :key="item[valueKey]" :value="toValue(item)">
+        {{ item[labelKey] }}
       </el-radio>
     </template>
   </el-radio-group>

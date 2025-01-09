@@ -45,6 +45,9 @@ const model = defineModel<WidgetDesignData<DCascaderOptions>>({ default: () => (
     <el-form-item label="选项值key" prop="options.map.value">
       <el-input v-model.trim="model.options.map!.value" placeholder="请输入" />
     </el-form-item>
+    <el-form-item label="子选项key" prop="options.map.children">
+      <el-input v-model.trim="model.options.map!.children" placeholder="请输入" />
+    </el-form-item>
   </el-form>
 </template>
 

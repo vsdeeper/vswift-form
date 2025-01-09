@@ -59,17 +59,6 @@ const model = defineModel<WidgetDesignData<DUploadOptions>>({ default: () => ({}
         controls-position="right"
       />
     </el-form-item>
-    <el-form-item label="总文件限制(M)" prop="options.totalFileSizeLimit">
-      <el-input-number
-        v-model="model.options.totalFileSizeLimit"
-        placeholder="请输入"
-        :min="0"
-        :max="Number.MAX_SAFE_INTEGER"
-        :step="1"
-        :controls="true"
-        controls-position="right"
-      />
-    </el-form-item>
     <el-form-item label="最多上传(个)" prop="options.amountLimit">
       <el-input-number
         v-model="model.options.amountLimit"

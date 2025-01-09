@@ -19,5 +19,5 @@ function onChange(val: any) {
 </script>
 
 <template>
-  <el-time-picker value-format="x" v-bind="options" v-model="model" @change="onChange" />
+  <el-time-picker v-bind="{ valueFormat: 'x', ...options }" v-model="model" @change="onChange" />
 </template>

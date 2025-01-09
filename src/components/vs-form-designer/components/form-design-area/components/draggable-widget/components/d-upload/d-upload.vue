@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import type { WidgetDesignData } from '@/components/vs-form-designer'
 import type { DUploadOptions } from '.'
-import type {
-  UploadFile,
-  UploadFiles,
-  UploadInstance,
-  UploadRawFile,
-  UploadStatus,
-  UploadUserFile,
+import {
+  ElMessage,
+  type UploadFile,
+  type UploadFiles,
+  type UploadInstance,
+  type UploadRawFile,
+  type UploadStatus,
+  type UploadUserFile,
 } from 'element-plus'
 import { Plus } from '@element-plus/icons-vue'
 
@@ -26,9 +27,6 @@ const tipArr = computed(() => {
   if (typeof options.value.singleFileSizeLimit === 'number') {
     arr.push(`单文件大小不超过${options.value.singleFileSizeLimit}KB`)
   }
-  if (typeof options.value.totalFileSizeLimit === 'number') {
-    arr.push(`总文件大小不超过${options.value.totalFileSizeLimit}M`)
-  }
   if (typeof options.value.amountLimit === 'number') {
     arr.push(`最多允许上传${options.value.amountLimit}个文件`)
   }
@@ -46,6 +44,16 @@ const onSuccess = (response: any, uploadFile: UploadFile, uploadFiles: UploadFil
 
 const onError = (error: Error, uploadFile: UploadFile, uploadFiles: UploadFiles) => {
   console.log('onError', error, uploadFile, uploadFiles)
+}
+
+const beforeUpload = (rawFile: UploadRawFile) => {
+  const { size } = rawFile
+  if (options.value.singleFileSizeLimit) {
+    if (size / 1024 > options.value.singleFileSizeLimit) {
+      ElMessage.error('文件大小超过限制')
+      return false
+    }
+  }
 }
 
 // 以下defineExpose
@@ -83,11 +91,14 @@ defineExpose({
     ref="uploadRef"
     class="d-upload"
     :class="{ [options.listType || 'text']: true }"
-    v-bind="options"
+    v-bind="{
+      onPreview,
+      onSuccess,
+      onError,
+      beforeUpload,
+      ...options,
+    }"
     v-model:file-list="model"
-    :on-preview="onPreview"
-    :on-success="onSuccess"
-    :on-error="onError"
   >
     <template #default>
       <el-icon v-if="options.listType === 'picture-card'"><Plus /></el-icon>

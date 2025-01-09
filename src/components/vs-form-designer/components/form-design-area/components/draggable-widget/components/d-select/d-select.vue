@@ -53,9 +53,7 @@ function toValue(item: OptionsConfigItem) {
 
 <template>
   <el-select
-    :clearable="options.clearable ?? true"
-    :filterable="options.filterable ?? true"
-    v-bind="options"
+    v-bind="{ clearable: true, filterable: true, ...options }"
     v-model="model"
     @change="onChange"
   >

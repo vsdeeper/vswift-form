@@ -10,7 +10,7 @@ const options = computed<DTextOptions>(() => props.designData.options)
 </script>
 
 <template>
-  <el-text v-bind="options" :type="options.type ?? 'info'">
+  <el-text v-bind="{ type: 'info', ...options }">
     {{ options.text }}
   </el-text>
 </template>

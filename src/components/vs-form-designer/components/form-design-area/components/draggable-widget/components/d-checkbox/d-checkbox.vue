@@ -45,9 +45,10 @@ function toValue(item: OptionsConfigItem) {
       <el-checkbox-button
         v-for="item in options.options"
         :key="item[valueKey]"
-        :label="item[labelKey]"
         :value="toValue(item)"
-      ></el-checkbox-button>
+      >
+        {{ item[labelKey] }}
+      </el-checkbox-button>
     </template>
     <template v-else>
       <el-checkbox
@@ -55,9 +56,7 @@ function toValue(item: OptionsConfigItem) {
         :key="item[valueKey]"
         :label="item[labelKey]"
         :value="toValue(item)"
-      >
-        <template #default>{{ item[labelKey] }}</template>
-      </el-checkbox>
+      />
     </template>
   </el-checkbox-group>
   <el-text v-else type="info">暂未配置</el-text>

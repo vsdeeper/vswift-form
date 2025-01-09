@@ -7,7 +7,6 @@ export type DUploadOptions = Partial<UploadProps> & {
   required?: boolean
   api?: string
   singleFileSizeLimit?: number
-  totalFileSizeLimit?: number
   amountLimit?: number
   imagePreviewProps?: ImageProps
 }

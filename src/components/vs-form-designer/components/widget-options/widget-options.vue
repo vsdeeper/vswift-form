@@ -100,7 +100,7 @@ function genWidgetDataOptions(widget: WidgetOptionItem) {
         multiple: false,
         clearable: true,
         options: [],
-        map: { label: 'label', value: 'id' },
+        map: { label: 'label', value: 'id', children: 'children' },
       } as DCascaderOptions
     case 'date-picker':
       return {
@@ -134,7 +134,6 @@ function genWidgetDataOptions(widget: WidgetOptionItem) {
         label: widget.label,
         required: true,
         singleFileSizeLimit: 500,
-        totalFileSizeLimit: 4.5,
         amountLimit: 9,
       }
     default:

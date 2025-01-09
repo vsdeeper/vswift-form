@@ -20,9 +20,7 @@ function onChange(val: any) {
 
 <template>
   <el-date-picker
-    :type="options.type ?? 'date'"
-    value-format="x"
-    v-bind="options"
+    v-bind="{ type: 'date', valueFormat: 'x', ...options }"
     v-model="model"
     @change="onChange"
   />

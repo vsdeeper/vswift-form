@@ -42,6 +42,7 @@ export type FormPropsSettings = Partial<Mutable<FormProps>> & {
 }
 export interface WidgetDesignData<Options = Record<string, any>> {
   id: string
+  idAlias?: string
   type: WidgetType
   options: Options
   widgetList?: WidgetDesignData<Options>[]
