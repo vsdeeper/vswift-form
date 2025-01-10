@@ -7,6 +7,7 @@ import { genWidgetId, nanoid5 } from '../../util'
 import type {
   DCascaderOptions,
   DCheckboxOptions,
+  DDataTableOptions,
   DDatePickerOptions,
   DDatetimePickerOptions,
   DDividerOptions,
@@ -16,6 +17,7 @@ import type {
   DSelectOptions,
   DTextOptions,
   DTimePickerOptions,
+  DUploadOptions,
 } from '../form-design-area'
 
 function transformClone(widget: WidgetOptionItem): WidgetDesignData | undefined {
@@ -135,7 +137,13 @@ function genWidgetDataOptions(widget: WidgetOptionItem) {
         required: true,
         singleFileSizeLimit: 500,
         amountLimit: 9,
-      }
+      } as DUploadOptions
+    case 'data-table':
+      return {
+        label: widget.label,
+        required: true,
+        border: true,
+      } as DDataTableOptions
     default:
       return {
         label: widget.label,
