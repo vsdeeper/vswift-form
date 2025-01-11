@@ -28,9 +28,6 @@ const onChange = (key: string, val: any) => {
     <el-form-item label="唯一标识" prop="id" :rules="[{ required: true, message: '必填项' }]">
       <el-input v-model="model.id" readonly />
     </el-form-item>
-    <el-form-item label="表单名称" prop="name">
-      <el-input v-model="model.name" placeholder="请输入" clearable />
-    </el-form-item>
     <el-form-item>
       <template #label>
         标签位置

@@ -38,7 +38,7 @@ const genFormItemProp = (id: string) => {
     :rules="genFormItemRules(designData.options)"
     :prop="genFormItemProp(designData.id)"
   >
-    <DataTableRender v-model="model" :design-data />
+    <DataTableRender v-model="model" :design-data :form-item-prop />
   </el-form-item>
   <el-form-item
     v-else-if="designData.type === 'recursive-area'"

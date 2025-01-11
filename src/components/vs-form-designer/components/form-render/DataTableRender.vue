@@ -5,6 +5,7 @@ import { SemiSelect } from '@element-plus/icons-vue'
 
 const props = defineProps<{
   designData: WidgetDesignData
+  formItemProp?: string
 }>()
 
 const model = defineModel<Record<string, any>>({ default: () => ({}) })
@@ -18,6 +19,10 @@ const onAdd = () => {
 
 const onDelete = (index: number) => {
   model.value[id.value].splice(index, 1)
+}
+
+const genFormItemProp = (id: string, index: number) => {
+  return props.formItemProp ? `${props.formItemProp}.${id}.${index}` : `${id}.${index}`
 }
 </script>
 
@@ -37,7 +42,7 @@ const onDelete = (index: number) => {
         <template #default="{ $index }">
           <FormItem
             :design-data="item"
-            :form-item-prop="`${id}.${$index}`"
+            :form-item-prop="genFormItemProp(id, $index)"
             where="data-table"
             v-model="model[id][$index]"
           />
