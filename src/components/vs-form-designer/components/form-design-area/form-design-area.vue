@@ -39,6 +39,9 @@ const formData = ref<Record<string, any>>({})
     .vs-cascader {
       width: 100%;
     }
+    .vs-input-number .vs-input__inner {
+      text-align: left;
+    }
   }
 }
 </style>
