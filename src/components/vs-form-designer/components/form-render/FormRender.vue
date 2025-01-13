@@ -42,7 +42,13 @@ defineExpose({
 </script>
 
 <template>
-  <el-form class="form-render" :model ref="formRef" v-bind="formConfig">
+  <el-form
+    class="form-render"
+    :class="{ 'auto-layout': formConfig?.autoLayout }"
+    :model
+    ref="formRef"
+    v-bind="formConfig"
+  >
     <el-row v-if="formConfig?.autoLayout" :gutter="20">
       <el-col
         v-for="item in widgetList"
@@ -62,11 +68,16 @@ defineExpose({
 </template>
 
 <style lang="scss" scoped>
-.form-render {
+.form-render.auto-layout {
   :deep(.vs-input-number),
   :deep(.vs-date-editor),
   :deep(.vs-cascader) {
     width: 100%;
+  }
+  :deep(.vs-input-number) {
+    .vs-input__inner {
+      text-align: left;
+    }
   }
 }
 </style>

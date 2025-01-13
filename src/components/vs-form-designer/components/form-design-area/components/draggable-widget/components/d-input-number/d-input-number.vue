@@ -37,11 +37,3 @@ function onChange(cur?: number, prev?: number) {
     </template>
   </el-input-number>
 </template>
-
-<style lang="scss" scoped>
-.vs-input-number {
-  :deep(.vs-input__inner) {
-    text-align: left;
-  }
-}
-</style>
