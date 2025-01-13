@@ -26,7 +26,7 @@ const onChange = (key: string, val: any) => {
 <template>
   <el-form :model label-position="right" label-width="100px">
     <el-form-item label="唯一标识" prop="id" :rules="[{ required: true, message: '必填项' }]">
-      <el-input v-model="model.id" readonly />
+      <el-input v-model="model.id" disabled />
     </el-form-item>
     <el-form-item>
       <template #label>

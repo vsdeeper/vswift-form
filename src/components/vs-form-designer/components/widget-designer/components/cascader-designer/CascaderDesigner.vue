@@ -36,7 +36,11 @@ const model = defineModel<WidgetDesignData<DCascaderOptions>>({ default: () => (
     <el-form-item label="必填" prop="options.required">
       <el-switch v-model="model.options.required" :active-value="true" :inactive-value="false" />
     </el-form-item>
-    <el-form-item label="数据接口" prop="options.systemApi">
+    <el-form-item
+      label="数据接口"
+      prop="options.systemApi"
+      :rules="[{ required: true, message: '必填项' }]"
+    >
       <el-input v-model="model.options.systemApi" placeholder="示例：/v1/api/getList" clearable />
     </el-form-item>
     <el-form-item label="选项名称key" prop="options.map.label">

@@ -43,7 +43,7 @@ const model = defineModel<WidgetDesignData<DUploadOptions>>({ default: () => ({}
       prop="options.api"
       :rules="[{ required: true, message: '必填项' }]"
     >
-      <el-input v-model="model.options.api" placeholder="请输入" />
+      <el-input v-model="model.options.api" placeholder="示例：/common/api/upload" />
     </el-form-item>
     <el-form-item label="必填" prop="options.required">
       <el-switch v-model="model.options.required" :active-value="true" :inactive-value="false" />
