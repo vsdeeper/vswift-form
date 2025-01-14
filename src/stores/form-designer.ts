@@ -6,6 +6,7 @@ export const initFormDesignData = (): FormDesignData => ({
     id: `form${nanoid5()}`,
     labelWidth: 120,
     labelPosition: 'left',
+    requireAsteriskPosition: 'right',
   },
   widgetList: [],
 })

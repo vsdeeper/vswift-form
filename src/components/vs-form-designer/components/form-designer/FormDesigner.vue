@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import { QuestionFilled } from '@element-plus/icons-vue'
 import type { FormPropsSettings } from '../..'
-import { LABEL_POSITION_OPTIONS, SIZE_OPTIONS } from './constants'
+import {
+  LABEL_POSITION_OPTIONS,
+  REQUIRE_ASTERISK_POSITION_OPTIONS,
+  SIZE_OPTIONS,
+} from './constants'
 
 const model = defineModel<FormPropsSettings>({ default: () => ({}) })
 
@@ -28,7 +32,7 @@ const onChange = (key: string, val: any) => {
     <el-form-item label="唯一标识" prop="id" :rules="[{ required: true, message: '必填项' }]">
       <el-input v-model="model.id" disabled />
     </el-form-item>
-    <el-form-item>
+    <el-form-item prop="labelPosition">
       <template #label>
         标签位置
         <el-tooltip content="表单渲染时生效" placement="top" effect="dark">
@@ -38,6 +42,17 @@ const onChange = (key: string, val: any) => {
       <el-select v-model="model.labelPosition" placeholder="请选择" clearable filterable>
         <el-option
           v-for="item in LABEL_POSITION_OPTIONS"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        >
+        </el-option>
+      </el-select>
+    </el-form-item>
+    <el-form-item label="星号的位置" prop="requireAsteriskPosition">
+      <el-select v-model="model.requireAsteriskPosition" placeholder="请选择" clearable filterable>
+        <el-option
+          v-for="item in REQUIRE_ASTERISK_POSITION_OPTIONS"
           :key="item.value"
           :label="item.label"
           :value="item.value"

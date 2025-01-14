@@ -43,10 +43,11 @@ defineExpose({
 
 <template>
   <el-form
+    ref="formRef"
     class="form-render"
     :class="{ 'auto-layout': formConfig?.autoLayout }"
     :model
-    ref="formRef"
+    require-asterisk-position="right"
     v-bind="formConfig"
   >
     <el-row v-if="formConfig?.autoLayout" :gutter="20">

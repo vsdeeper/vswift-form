@@ -14,6 +14,7 @@ import type {
   DInputNumberOptions,
   DInputOptions,
   DRadioOptions,
+  DRecursiveAreaOptions,
   DSelectOptions,
   DTextOptions,
   DTimePickerOptions,
@@ -144,6 +145,11 @@ function genWidgetDataOptions(widget: WidgetOptionItem) {
         required: true,
         border: true,
       } as DDataTableOptions
+    case 'recursive-area':
+      return {
+        label: widget.label,
+        required: true,
+      } as DRecursiveAreaOptions
     default:
       return {
         label: widget.label,

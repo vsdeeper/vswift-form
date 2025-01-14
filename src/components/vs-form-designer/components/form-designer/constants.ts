@@ -9,3 +9,8 @@ export const LABEL_POSITION_OPTIONS = [
   { label: 'right', value: 'right' },
   { label: 'top', value: 'top' },
 ]
+
+export const REQUIRE_ASTERISK_POSITION_OPTIONS = [
+  { label: 'left', value: 'left' },
+  { label: 'right', value: 'right' },
+]
