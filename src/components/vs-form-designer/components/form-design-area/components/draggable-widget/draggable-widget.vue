@@ -201,7 +201,7 @@ function interceptSomeWidgetPutInAnotherWidget(
     position: relative;
     border: 3px solid #fff;
     background-color: #fff;
-    padding: 8px;
+    padding: 6px;
     min-height: 30px;
     div[class*='-cascader '],
     div[class*='-date-editor '],
